@@ -1,10 +1,10 @@
 <template>
   <v-app>
     <v-app-bar app color="blue">
-      <v-toolbar-text>TodoList</v-toolbar-text>
+      <v-toolbar-title>TodoList</v-toolbar-title>
     </v-app-bar>
     <v-main>
-      <TodoItemList :items="items" :doneItems="doneItems" />
+      <TodoItemList :items="items" :doneItems="doneItems"></TodoItemList>
     </v-main>
   </v-app>
 </template>

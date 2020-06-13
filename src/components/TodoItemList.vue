@@ -1,22 +1,25 @@
 <template>
   <v-container fluid>
-    <p>items: {{ items }}</p>
-    <p>doneItems: {{ doneItems }}</p>
+    <v-row v-for="item in items" :key="item.id">
+      <TodoItemCard :item="item" :done="doneItems.includes(item.id)"></TodoItemCard>
+    </v-row>
   </v-container>
 </template>
 
 <script lang="ts">
 import Vue, { PropType } from "vue";
+import TodoItemCard from "./TodoItemCard.vue";
 import ITodoItem from "src/common/ITodoItem";
 
 export default Vue.extend({
   props: {
     items: {
-      type: Object as PropType<Array<ITodoItem>>
+      type: Array as PropType<Array<ITodoItem>>
     },
     doneItems: {
-      type: Object as PropType<Array<number>>
+      type: Array as PropType<Array<number>>
     }
-  }
+  },
+  components: { TodoItemCard }
 });
 </script>
