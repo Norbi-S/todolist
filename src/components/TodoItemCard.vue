@@ -1,22 +1,22 @@
 <template>
   <div>
-    <p>item: {{ item }}</p>
-    <p>done: {{ done }}</p>
+    <p>itemID: {{ itemID }}</p>
+    <p>store data: {{ countAlias }}</p>
   </div>
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from "vue";
-import ITodoItem from "src/common/ITodoItem";
+import Vue from "vue";
+import { mapState } from "vuex";
 
 export default Vue.extend({
   props: {
-    item: {
-      type: Object as PropType<ITodoItem>
+    itemID: {
+      type: Number,
     },
-    done: {
-      type: Boolean
-    }
-  }
+  },
+  computed: mapState({
+    countAlias: "data",
+  }),
 });
 </script>

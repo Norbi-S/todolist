@@ -4,7 +4,7 @@
       <v-toolbar-title>TodoList</v-toolbar-title>
     </v-app-bar>
     <v-main>
-      <TodoItemList :items="items" :doneItems="doneItems"></TodoItemList>
+      <TodoItemList></TodoItemList>
     </v-main>
   </v-app>
 </template>
@@ -20,20 +20,7 @@ type State = {
 
 export default Vue.extend({
   components: {
-    TodoItemList
+    TodoItemList,
   },
-  data: function(): State {
-    return {
-      items: [
-        { id: 1, content: "First item", done: false },
-        { id: 2, content: "Second item", done: true }
-      ]
-    };
-  },
-  computed: {
-    doneItems: function(): Array<number> {
-      return this.items.filter(({ done }) => done).map(({ id }) => id);
-    }
-  }
 });
 </script>
