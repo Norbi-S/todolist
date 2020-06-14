@@ -1,13 +1,11 @@
 <template>
   <div>
     <p>itemID: {{ itemID }}</p>
-    <p>store data: {{ countAlias }}</p>
   </div>
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import { mapState } from "vuex";
+import Vue from 'vue';
 
 export default Vue.extend({
   props: {
@@ -15,8 +13,5 @@ export default Vue.extend({
       type: Number,
     },
   },
-  computed: mapState({
-    countAlias: "data",
-  }),
 });
 </script>

@@ -10,9 +10,9 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import TodoItemList from "./components/TodoItemList.vue";
-import ITodoItem from "./common/ITodoItem";
+import Vue from 'vue';
+import TodoItemList from './components/TodoItemList.vue';
+import ITodoItem from './common/ITodoItem';
 
 type State = {
   items: Array<ITodoItem>;
