@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card ripple>
     <v-list flat>
       <v-list-item-group
         :value="isDone | booleanToListItemValue"

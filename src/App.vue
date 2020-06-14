@@ -1,10 +1,15 @@
 <template>
   <v-app>
     <v-app-bar app color="blue">
-      <v-toolbar-title>TodoList</v-toolbar-title>
+      <v-toolbar-title class="white--text">TodoList</v-toolbar-title>
     </v-app-bar>
     <v-main>
-      <TodoItemList></TodoItemList>
+      <v-container fluid>
+        <TodoItemList></TodoItemList>
+        <v-btn fixed bottom right fab color="primary">
+          <v-icon>mdi-plus</v-icon>
+        </v-btn>
+      </v-container>
     </v-main>
   </v-app>
 </template>
