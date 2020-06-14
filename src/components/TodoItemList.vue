@@ -1,10 +1,10 @@
 <template>
   <v-container fluid>
-    <TodoItemCard
-      v-for="todo in todos"
-      :key="todo"
-      :item-id="todo"
-    ></TodoItemCard>
+    <v-row v-for="todo in todos" :key="todo">
+      <v-container fluid="">
+        <TodoItemCard :item-id="todo"></TodoItemCard>
+      </v-container>
+    </v-row>
   </v-container>
 </template>
 
