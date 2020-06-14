@@ -2,7 +2,7 @@
   <v-card ripple>
     <v-list flat>
       <v-list-item-group
-        :value="isDone | booleanToListItemValue"
+        :value="item.done | booleanToListItemValue"
         @change="onDoneStatusChange"
       >
         <v-list-item :ripple="false">
@@ -10,7 +10,9 @@
             <v-list-item-action>
               <v-checkbox v-model="props.active" color="primary"></v-checkbox>
             </v-list-item-action>
-            <v-list-item-content>
+            <v-list-item-content
+              :class="{ 'text-decoration-line-through': item.done }"
+            >
               {{ item.content }}
             </v-list-item-content>
           </template>
@@ -32,9 +34,6 @@ export default Vue.extend({
   computed: {
     item() {
       return this.$store.getters.getItem(this.$props.itemId);
-    },
-    isDone() {
-      return this.$store.getters.isTodoDone(this.$props.itemId);
     },
   },
   methods: {
