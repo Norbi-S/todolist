@@ -6,9 +6,7 @@
     <v-main>
       <v-container fluid>
         <TodoItemList></TodoItemList>
-        <v-btn fixed bottom right fab color="primary">
-          <v-icon>mdi-plus</v-icon>
-        </v-btn>
+        <AddItemDialog></AddItemDialog>
       </v-container>
     </v-main>
   </v-app>
@@ -17,6 +15,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import TodoItemList from './components/TodoItemList.vue';
+import AddItemDialog from './components/AddItemDialog.vue';
 import ITodoItem from './common/ITodoItem';
 
 type State = {
@@ -26,6 +25,7 @@ type State = {
 export default Vue.extend({
   components: {
     TodoItemList,
+    AddItemDialog,
   },
 });
 </script>
