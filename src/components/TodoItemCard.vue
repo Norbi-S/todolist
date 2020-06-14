@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>itemID: {{ itemID }}</p>
+    <p>itemID: {{ itemId }}</p>
   </div>
 </template>
 
@@ -9,7 +9,7 @@ import Vue from 'vue';
 
 export default Vue.extend({
   props: {
-    itemID: {
+    itemId: {
       type: Number,
     },
   },
