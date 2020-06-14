@@ -17,7 +17,15 @@
         </v-toolbar-items>
       </v-toolbar>
       <v-card-content>
-        <v-container fluid>Text</v-container>
+        <v-container fluid>
+          <v-form v-model="valid">
+            <v-row>
+              <v-container fluid>
+                <v-text-field label="Title" single-line :rules="titleRules"></v-text-field>
+              </v-container>
+            </v-row>
+          </v-form>
+        </v-container>
       </v-card-content>
     </v-card>
   </v-dialog>
@@ -30,6 +38,11 @@ export default Vue.extend({
   data: function () {
     return {
       shown: false,
+      valid: false,
+      titleRules: [
+        (v: string | undefined) =>
+          (v != null && v.length > 0) || 'Title is required',
+      ],
     };
   },
 });
