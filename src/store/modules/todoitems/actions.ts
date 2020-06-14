@@ -1,5 +1,14 @@
 import { ActionTree } from 'vuex';
 import State from './state';
+import { ItemIDsPayload } from './common';
 
-/* eslint-disable-next-line @typescript-eslint/no-explicit-any */
-export default {} as ActionTree<State, any>;
+export default {
+  makeItemsDone({ commit }, payload: ItemIDsPayload) {
+    commit('setItemsDone', payload);
+  },
+
+  makeItemsNotDone({ commit }, payload: ItemIDsPayload) {
+    commit('setItemsNotDone', payload);
+  },
+  /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
+} as ActionTree<State, any>;
