@@ -16,7 +16,7 @@
           <v-btn text @click="shown = false" color="white">Save</v-btn>
         </v-toolbar-items>
       </v-toolbar>
-      <v-card-content>
+      <v-card-text>
         <v-container fluid>
           <v-form v-model="valid">
             <v-row>
@@ -26,7 +26,7 @@
             </v-row>
           </v-form>
         </v-container>
-      </v-card-content>
+      </v-card-text>
     </v-card>
   </v-dialog>
 </template>
