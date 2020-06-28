@@ -1,6 +1,7 @@
 import { MutationTree } from 'vuex';
 import State from './state';
-import { ItemIDsPayload } from './common';
+import { ItemIDsPayload, NewItemPayload } from './common';
+import ITodoItem from '@/common/ITodoItem';
 
 export default {
   setItemsDone(state, { itemIDs }: ItemIDsPayload) {
@@ -28,6 +29,25 @@ export default {
 
       return item;
     });
+
+    state.itemsMap = State.makeItemsMapFromItems(newItems);
+  },
+
+  addItem(state, { content }: NewItemPayload) {
+    let maxID = 0;
+    for (const item of Object.values(state.itemsMap)) {
+      if (item.id > maxID) {
+        maxID = item.id;
+      }
+    }
+
+    const newItem: ITodoItem = {
+      id: maxID + 1,
+      content: content,
+      done: false,
+    };
+
+    const newItems = [...Object.values(state.itemsMap), newItem];
 
     state.itemsMap = State.makeItemsMapFromItems(newItems);
   },

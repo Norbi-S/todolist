@@ -1,10 +1,5 @@
 <template>
-  <v-dialog
-    v-model="shown"
-    fullscreen
-    hide-overlay
-    transition="dialog-bottom-transition"
-  >
+  <v-dialog v-model="shown" fullscreen hide-overlay transition="dialog-bottom-transition">
     <template v-slot:activator="{ on, attrs }">
       <v-btn fixed bottom right fab color="primary" v-bind="attrs" v-on="on">
         <v-icon>mdi-plus</v-icon>
@@ -12,13 +7,13 @@
     </template>
     <v-card>
       <v-toolbar color="primary">
-        <v-btn icon color="white" @click="shown = false">
+        <v-btn icon color="white" @click="onClose()">
           <v-icon>mdi-close</v-icon>
         </v-btn>
         <v-toolbar-title class="white--text">Add Todo Item</v-toolbar-title>
         <v-spacer></v-spacer>
         <v-toolbar-items>
-          <v-btn text @click="onSave()" color="white">Save</v-btn>
+          <v-btn text @click="onSave()" color="white" :disabled="!valid">Save</v-btn>
         </v-toolbar-items>
       </v-toolbar>
       <v-card-text>
@@ -26,11 +21,7 @@
           <v-form ref="form" v-model="valid" lazy-validation>
             <v-row>
               <v-container fluid>
-                <v-text-field
-                  label="Title"
-                  single-line
-                  :rules="titleRules"
-                ></v-text-field>
+                <v-text-field label="Title" single-line :rules="titleRules" v-model="title"></v-text-field>
               </v-container>
             </v-row>
           </v-form>
@@ -44,11 +35,17 @@
 import Vue from 'vue';
 
 interface FormRef {
+  reset: () => void;
   validate: () => boolean;
 }
 
 function isFormRef(obj: unknown): obj is FormRef {
-  return typeof obj === 'object' && obj != null && 'validate' in obj;
+  return (
+    typeof obj === 'object' &&
+    obj != null &&
+    'validate' in obj &&
+    'reset' in obj
+  );
 }
 
 export default Vue.extend({
@@ -60,9 +57,19 @@ export default Vue.extend({
         (v: string | undefined) =>
           (v != null && v.length > 0) || 'Title is required',
       ],
+      title: '',
     };
   },
   methods: {
+    onClose() {
+      const formRef = this.$refs.form;
+      if (!isFormRef(formRef)) {
+        return;
+      }
+
+      formRef.reset();
+      this.shown = false;
+    },
     onSave() {
       const formRef = this.$refs.form;
       if (!isFormRef(formRef)) {
@@ -70,7 +77,8 @@ export default Vue.extend({
       }
 
       if (formRef.validate()) {
-        this.shown = false;
+        this.$store.dispatch('addItem', { content: this.title });
+        this.onClose();
       }
     },
   },
