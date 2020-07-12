@@ -18,7 +18,7 @@
       </v-toolbar>
       <v-card-text>
         <v-container fluid>
-          <v-form ref="form" v-model="valid" lazy-validation>
+          <v-form ref="form" v-model="valid" lazy-validation @submit.prevent="onSave">
             <v-row>
               <v-container fluid>
                 <v-text-field label="Title" single-line :rules="titleRules" v-model="title"></v-text-field>
