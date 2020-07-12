@@ -1,12 +1,27 @@
 <template>
   <v-card ripple>
-    <v-card-title>
-      <v-checkbox :input-value="item.done" @click.stop="onDoneStatusChange">
-        <template v-slot:label>
-          <div :class="{'text-decoration-line-through': item.done}">{{ item.content }}</div>
-        </template>
-      </v-checkbox>
-    </v-card-title>
+    <v-container fluid>
+      <v-row justify="space-between">
+        <v-col cols="auto">
+          <v-checkbox class="pa-0 ma-0" :input-value="item.done" @click.stop="onDoneStatusChange">
+            <template v-slot:label>
+              <v-card-title
+                :class="[{'text-decoration-line-through': item.done}, 'pa-0']"
+              >{{ item.content }}</v-card-title>
+            </template>
+          </v-checkbox>
+        </v-col>
+        <v-col cols="auto">
+          <v-card-actions>
+            <v-spacer></v-spacer>
+
+            <v-btn icon>
+              <v-icon>mdi-trash-can</v-icon>
+            </v-btn>
+          </v-card-actions>
+        </v-col>
+      </v-row>
+    </v-container>
   </v-card>
 </template>
 
