@@ -1,24 +1,12 @@
 <template>
   <v-card ripple>
-    <v-list flat>
-      <v-list-item-group
-        :value="item.done | booleanToListItemValue"
-        @change="onDoneStatusChange"
-      >
-        <v-list-item :ripple="false">
-          <template v-slot:default="props">
-            <v-list-item-action>
-              <v-checkbox v-model="props.active" color="primary"></v-checkbox>
-            </v-list-item-action>
-            <v-list-item-content
-              :class="{ 'text-decoration-line-through': item.done }"
-            >
-              {{ item.content }}
-            </v-list-item-content>
-          </template>
-        </v-list-item>
-      </v-list-item-group>
-    </v-list>
+    <v-card-title>
+      <v-checkbox :input-value="item.done" @click.stop="onDoneStatusChange">
+        <template v-slot:label>
+          <div :class="{'text-decoration-line-through': item.done}">{{ item.content }}</div>
+        </template>
+      </v-checkbox>
+    </v-card-title>
   </v-card>
 </template>
 
@@ -42,11 +30,6 @@ export default Vue.extend({
       const action = isDone ? 'makeItemsNotDone' : 'makeItemsDone';
 
       this.$store.dispatch(action, { itemIDs: [this.$props.itemId] });
-    },
-  },
-  filters: {
-    booleanToListItemValue(val: boolean): number | undefined {
-      return val ? 0 : undefined;
     },
   },
 });
